@@ -57,7 +57,7 @@ DEFAULT_MODELS = [
 
 def corpus() -> list[str]:
     """Ram's current memories: every seeded memory except the ones a later one corrects."""
-    seed = json.loads((ROOT / "seeds" / "ram_mohapatra.json").read_text())
+    seed = json.loads((ROOT / "tests" / "fixtures" / "ram_mohapatra.json").read_text())
     replaced = {m["corrects"] for m in seed["memories"] if m.get("corrects")}
     return [m["text"] for m in seed["memories"] if m.get("key") not in replaced]
 

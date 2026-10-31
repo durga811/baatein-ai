@@ -1,6 +1,6 @@
 # Retrieval benchmark: finding the right memory in English, Hindi, Hinglish, Odia and Kannada
 
-> **Decision (2026-10-30):** Baatein uses Pinecone `llama-text-embed-v2` at 2048 dimensions, focusing on English, Hindi and Hinglish for now. It is the strongest model here for those three (English 29/31 first, AUC 0.98; Hindi 28/31, 0.89; Hinglish 24/31, 0.80). Its round trip (about 450 ms) is too slow to hold each reply for, so per-turn results join the next turn and the `recall` tool says "Hmm…" while it searches (`docs/DECISIONS.md`, D14); similarity cut-offs are set per language from these results. Odia and Kannada stay in the code but off the signup form until their retrieval is better (local `multilingual-e5-large` is the strongest for them). Details in `docs/PLAN.md` §3 Embeddings.
+> **Decision (2026-10-30):** Baatein uses Pinecone `llama-text-embed-v2` at 2048 dimensions, focusing on English, Hindi and Hinglish for now. It is the strongest model here for those three (English 29/31 first, AUC 0.98; Hindi 28/31, 0.89; Hinglish 24/31, 0.80). Its round trip (about 450 ms) is too slow to hold each reply for, so per-turn results join the next turn and the `recall` tool says "Hmm…" while it searches (`docs/DECISIONS.md`, D14); similarity cut-offs are set per language from these results. Odia and Kannada stay in the code but off the signup form until their retrieval is better (local `multilingual-e5-large` is the strongest for them).
 
 Baatein looks up saved memories in two ways:
 - **Per-turn recall**: on every user turn it searches with the user's own words, as Sarvam transcribes them (`Assistant.on_user_turn_completed`). Results are added as a hidden note; since D14 the reply no longer waits for them, and a slower search's results join the next turn.
@@ -20,7 +20,7 @@ Models download from Hugging Face through FastEmbed into `data/models`. Each mod
 
 ## The dataset (`bench/retrieval/queries.json`)
 
-- **Corpus:** Ram's 34 current memories from `seeds/ram_mohapatra.json`, in English.
+- **Corpus:** Ram's 34 current memories from `tests/fixtures/ram_mohapatra.json`, in English.
 - **31 questions**, each in five forms:
   - `hindi`: Devanagari with English words in Latin, the way Sarvam's `codemix` STT returns Hindi. This is what per-turn recall searches for a Hinglish user.
   - `hinglish`: the same in Roman script, as typed or as another STT might return it.

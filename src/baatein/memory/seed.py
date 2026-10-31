@@ -1,6 +1,6 @@
 """Test accounts from a file, to test calls without living through them.
 
-One format, three ways in and out (see `docs/SEED_DATA.md` and `seeds/`): admins upload a
+One format, three ways in and out (examples in `tests/fixtures/`): admins upload a
 file in Settings, `baatein seed FILE` loads one from the command line, and admins download any
 account as a file (`seed_export.py`) that loads back the same.
 

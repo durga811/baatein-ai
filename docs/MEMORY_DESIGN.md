@@ -1,10 +1,10 @@
 # Memory design: lessons from the Voice Buddy scenario library
 
-Source: `docs/voice_buddy_scenario_library_v3_full_dialogues.docx` (Voice Buddy, edition 3, October 2026). It has **45 scenarios**: 9 original multi-session stories (#1–9), 24 behavioural cases (#10–33) and 12 scheduled-reminder cases (#34–45), followed by a memory and behaviour contract (§4) and acceptance checks (§5).
+Source: the Voice Buddy scenario library (edition 3, October 2026). It has **45 scenarios**: 9 original multi-session stories (#1–9), 24 behavioural cases (#10–33) and 12 scheduled-reminder cases (#34–45), followed by a memory and behaviour contract (§4) and acceptance checks (§5).
 
 This document records what each scenario teaches about memory, the gaps in Baatein's current memory layer, the proposed structure, and the decisions taken. It is the input for the Phase 5 plan.
 
-> **As built (Phase 5, 2026-10-30):** this is the design written before the build; where they differ, the code and `docs/PHASE5_SLICES.md` / `docs/DECISIONS.md` win. The main differences: `facts`/`Fact` were extended rather than renamed to `memories`, and there is no consent column (with strict consent, `remember` after a "yes" is the only way in); threads use `last_offered_at` / `times_offered`; the reminder tools are `create_reminder`, `update_reminder`, `complete_occurrence`, `skip_occurrence` and `cancel_reminder`; and besides the last call's summary, the context also gets the one before a trivial call (D20) and other calls from the same day (D27). Due reminders are brought up in the greeting itself (D26).
+> **As built (Phase 5, 2026-10-30):** this is the design written before the build; where they differ, the code and `docs/DECISIONS.md` win. The main differences: `facts`/`Fact` were extended rather than renamed to `memories`, and there is no consent column (with strict consent, `remember` after a "yes" is the only way in); threads use `last_offered_at` / `times_offered`; the reminder tools are `create_reminder`, `update_reminder`, `complete_occurrence`, `skip_occurrence` and `cancel_reminder`; and besides the last call's summary, the context also gets the one before a trivial call (D20) and other calls from the same day (D27). Due reminders are brought up in the greeting itself (D26).
 
 ## 1. Headline findings
 

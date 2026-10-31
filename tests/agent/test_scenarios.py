@@ -1,8 +1,8 @@
 """Scenario evals against real Claude (Phase 5, slice 6).
 
 Each test starts from a fixed memory state and runs a short conversation in LiveKit's text
-mode. Scenario numbers refer to the library in docs/MEMORY_DESIGN.md; the scenarios already
-covered in test_assistant_behaviour.py are listed in docs/PHASE5_SLICES.md.
+mode. Scenario numbers refer to the library in docs/MEMORY_DESIGN.md; some scenarios are
+covered in test_assistant_behaviour.py instead.
 
 The last two tests replay whole sequences of calls against a real SQLite database, with the
 end-of-call summary written between calls, as the plan's "done when" asks (#1 over three

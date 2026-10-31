@@ -1,5 +1,5 @@
 {
- "about": "Retrieval benchmark over Ram's seeded memories (seeds/ram_mohapatra.json), stored in English as in production. Each question comes in every spoken form: english (an English-speaking user), hindi (Devanagari with English words in Latin, as Sarvam's codemix STT returns it), hinglish (Roman script), odia (Odia script), kannada (Kannada script); plus keywords (English, as Claude writes for the recall tool). `match` is a case-insensitive piece of the expected memory's text. Negatives are small talk that should retrieve nothing. The Odia and Kannada lines were written by Claude and should be reviewed by native speakers.",
+ "about": "Retrieval benchmark over Ram's seeded memories (tests/fixtures/ram_mohapatra.json), stored in English as in production. Each question comes in every spoken form: english (an English-speaking user), hindi (Devanagari with English words in Latin, as Sarvam's codemix STT returns it), hinglish (Roman script), odia (Odia script), kannada (Kannada script); plus keywords (English, as Claude writes for the recall tool). `match` is a case-insensitive piece of the expected memory's text. Negatives are small talk that should retrieve nothing. The Odia and Kannada lines were written by Claude and should be reviewed by native speakers.",
  "spoken": [
   "english",
   "hindi",

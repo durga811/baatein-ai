@@ -170,9 +170,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("migrate", help="apply database migrations")
     commands.add_parser("reembed", help="rebuild the fact vector index for the current embedder")
-    seed_cmd = commands.add_parser(
-        "seed", help="create test accounts from seed files (see docs/SEED_DATA.md)"
-    )
+    seed_cmd = commands.add_parser("seed", help="create test accounts from seed files")
     seed_cmd.add_argument("files", type=Path, nargs="+")
     existing = seed_cmd.add_mutually_exclusive_group()
     existing.add_argument(

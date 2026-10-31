@@ -21,7 +21,7 @@ from baatein.memory.seed import SAVED_AFTER, Seeder, SeedError, SeedFile, resolv
 from baatein.voice.personas import UnknownPersonaError, default_persona_registry
 from tests.fakes.world import World, build_world
 
-EXAMPLE = Path(__file__).parents[2] / "seeds" / "mohan.json"
+EXAMPLE = Path(__file__).parents[1] / "fixtures" / "mohan.json"
 IST = ZoneInfo("Asia/Kolkata")
 TODAY = date(2026, 1, 1)  # the test clock, in India
 

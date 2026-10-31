@@ -29,7 +29,7 @@ from baatein.voice.personas import default_persona_registry
 from tests.fakes.clock import FrozenClock
 from tests.fakes.embedder import FakeEmbedder
 
-RAM = Path(__file__).parents[2] / "seeds" / "ram_mohapatra.json"
+RAM = Path(__file__).parents[1] / "fixtures" / "ram_mohapatra.json"
 NOW = datetime(2026, 10, 30, 11, 0, tzinfo=ZoneInfo("Asia/Kolkata"))
 
 
