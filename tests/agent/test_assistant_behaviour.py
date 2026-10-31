@@ -442,7 +442,7 @@ async def test_brings_up_a_due_reminder() -> None:
         assert any("ravi" in reply.lower() for reply in replies), replies
 
 
-RAM = Path(__file__).parents[2] / "seeds" / "ram_mohapatra.json"
+RAM = Path(__file__).parents[1] / "fixtures" / "ram_mohapatra.json"
 
 
 async def with_ram(world: World) -> None:

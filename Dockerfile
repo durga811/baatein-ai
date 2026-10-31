@@ -1,5 +1,5 @@
 # The whole app in one image: the web page and API (`baatein serve`) and the voice agent
-# (`baatein-agent start`), sharing one SQLite file on a volume at /app/data. docs/DEPLOY.md
+# (`baatein-agent start`), sharing one SQLite file on a volume at /app/data.
 FROM python:3.12-slim-bookworm
 
 COPY --from=ghcr.io/astral-sh/uv:0.13.6 /uv /bin/uv
@@ -17,7 +17,6 @@ ENV PATH="/app/.venv/bin:$PATH"
 # The models the agent loads for every call, baked in so the first call isn't slow.
 RUN baatein-agent download-files
 
-COPY seeds ./seeds
 COPY deploy/start.sh ./deploy/start.sh
 
 ENV BAATEIN_DATABASE__URL=sqlite:////app/data/baatein.db PORT=8000

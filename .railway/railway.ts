@@ -1,5 +1,5 @@
 // Baatein on Railway: one service, "baatein-ai" (web page, API and voice agent) in Singapore, with the SQLite
-// database on a volume. Audio goes through LiveKit Cloud, not Railway. docs/DEPLOY.md
+// database on a volume. Audio goes through LiveKit Cloud, not Railway.
 //
 // Preview with `railway config plan`, then `railway config apply`. Set the secrets marked
 // preserve() in the Railway dashboard first (sealed); they never go in this file. The custom
@@ -34,13 +34,6 @@ export default defineRailway(() => {
       BAATEIN_EMBEDDING__MODEL: "llama-text-embed-v2",
       BAATEIN_EMBEDDING__DIMENSIONS: "2048",
       BAATEIN_AUTH__SIGNUP_ENABLED: "false",
-      // Loaded on start when missing (needs BAATEIN_AUTH__SEED_PASSWORD); never replaced.
-      BAATEIN_SEED_FILES: [
-        "seeds/demo/asha_new.json",
-        "seeds/demo/meera_interview.json",
-        "seeds/demo/vikram_new_dad.json",
-        "seeds/demo/kamala_elder.json",
-      ].join(" "),
       // Secrets, set (sealed) in the dashboard.
       ANTHROPIC_API_KEY: preserve(),
       SARVAM_API_KEY: preserve(),

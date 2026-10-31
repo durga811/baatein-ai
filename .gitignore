@@ -16,3 +16,17 @@ console-recordings/
 
 # Railway IaC authoring package (npm install railway), not committed
 node_modules/
+
+# Local-only material, kept out of the public repo: demo recordings and voice tests, seed
+# accounts (loaded by admins from Settings), internal planning and ops notes, and coding
+# assistant settings.
+demo/
+seeds/
+docs/PLAN.md
+docs/PHASE5_SLICES.md
+docs/SEED_DATA.md
+docs/DEPLOY.md
+docs/RUNNING.md
+docs/*.docx
+.claude/
+.agent/

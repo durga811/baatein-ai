@@ -9,7 +9,7 @@ The decisions taken so far, the options considered, and why. Details live in the
 ### D1. Our own memory store on SQLite, not Mem0
 - **Options:** Mem0 (open source or platform), Zep, our own store.
 - **Chosen:** our own `MemoryStore` on SQLite: a `facts` table, `sqlite-vec` and FTS5, fused with reciprocal rank fusion.
-- **Why:** Mem0 has no SQLite vector store (extra infrastructure, no Docker here), costs two extra LLM calls per add, needs a hack for custom embedders, and doesn't cover storylines, reminders, summaries or transcripts. The port stays provider-neutral, so Mem0 or Zep can still be plugged in. See `PLAN.md` §3.
+- **Why:** Mem0 has no SQLite vector store (extra infrastructure, no Docker here), costs two extra LLM calls per add, needs a hack for custom embedders, and doesn't cover storylines, reminders, summaries or transcripts. The port stays provider-neutral, so Mem0 or Zep can still be plugged in.
 
 ### D2. Claude Haiku for conversation and call summaries
 - **Chosen:** `claude-haiku-5-5` for both; Sonnet via env if needed.
@@ -264,7 +264,7 @@ Three problems from Ram's live calls at 4:45 and 4:47 pm:
 - **Signup** is off by default (`BAATEIN_AUTH__SIGNUP_ENABLED`). `/auth/signup` answers 403, and the page shows Sign up only when the server says it's open. Accounts come from admins, or from `baatein create-user`, which asks for the password.
 - **Admins** are a list of emails in settings (`BAATEIN_AUTH__ADMIN_EMAILS`), not a database flag. That keeps one source of truth, set as a secret on the deploy so the addresses stay out of the public repo. The server checks it on every admin route.
 - **One format, three ways:** the seed file. Admins upload it in Settings, `baatein seed` loads it, and a download writes it.
-  - **Round trip:** a download loads back as the same account, so download, replace, download gives identical files. A test does this for every file in `seeds/`.
+  - **Round trip:** a download loads back as the same account, so download, replace, download gives identical files. A test does this for every file in `tests/fixtures/`.
   - **New fields:** to make that true, the format gained a storyline `key`, `times_offered`, a boundary's `thread`, and a reminder's `status` and `settled` occurrences.
   - **Checked first:** references (call, memory and storyline keys) are checked when the file is read, so a bad file fails before anything is saved.
 - **Replace is atomic.** The new copy is loaded under a placeholder email, then one transaction removes the old account and gives the new one its email. A failure partway (say, Pinecone down) leaves the old account as it was. A replace without a password keeps the old one. Admin accounts can't be loaded from a file, because a file's password would then decide who is admin.

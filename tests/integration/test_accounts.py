@@ -59,7 +59,7 @@ def test_a_replace_that_fails_halfway_leaves_the_old_account(tmp_path: Path) -> 
     assert asyncio.run(run()) == [(True, 1)]
 
 
-SEEDS = sorted((Path(__file__).parents[2] / "seeds").rglob("*.json"))
+SEEDS = sorted((Path(__file__).parents[1] / "fixtures").glob("*.json"))
 
 
 @pytest.mark.parametrize("path", SEEDS, ids=lambda path: path.stem)
@@ -95,12 +95,10 @@ def test_every_seed_file_loads_and_downloads_back_the_same(path: Path, tmp_path:
     assert len(first.reminders) == len(seed.reminders)
 
 
-def test_demo_seed_files_carry_no_password() -> None:
-    """The repo is public: an admin gives demo accounts a password when loading them."""
-    demos = [path for path in SEEDS if path.parent.name == "demo"]
-
-    assert len(demos) >= 4
-    for path in demos:
+def test_seed_fixtures_carry_no_password() -> None:
+    """The repo is public: a password is given when a file is loaded, never kept in it."""
+    assert len(SEEDS) >= 2
+    for path in SEEDS:
         seed = SeedFile.model_validate_json(path.read_text(encoding="utf-8"))
         assert seed.user is not None
         assert seed.user.password is None
